@@ -46,7 +46,7 @@ def test_add_last():
     assert lista["last"]["info"] == 3
 
 
-@pytest.mark.skip(reason="No implementado aun")
+
 def test_is_empty():
     lista = setup_tests()
 
@@ -78,7 +78,7 @@ def test_get_first_element():
     assert lt.first_element(lista) == 3
 
 
-@pytest.mark.skip(reason="No implementado aun")
+
 def test_get_last_element():
 
     lista = setup_tests()
@@ -90,7 +90,7 @@ def test_get_last_element():
     assert lt.last_element(lista) == 1
 
 
-@pytest.mark.skip(reason="No implementado aun")
+
 def test_get_element():
 
     lista = setup_tests()
@@ -104,7 +104,7 @@ def test_get_element():
     assert lt.get_element(lista, 2) == 1
 
 
-@pytest.mark.skip(reason="No implementado aun")
+
 def test_remove_first():
     lista = setup_tests()
 
@@ -119,7 +119,7 @@ def test_remove_first():
     assert lista["last"]["info"] == 1
 
 
-@pytest.mark.skip(reason="No implementado aun")
+
 def test_remove_last():
     lista = setup_tests()
 
@@ -134,7 +134,7 @@ def test_remove_last():
     assert lista["last"]["info"] == 2
 
 
-@pytest.mark.skip(reason="No implementado aun")
+
 def test_insert_element():
     lista = setup_tests()
 
@@ -166,7 +166,7 @@ def test_insert_element():
     assert lista["first"]["next"]["next"]["next"]["info"] == 4
     assert lista["last"]["info"] == 4
 
-@pytest.mark.skip(reason="No implementado aun")
+
 def test_is_present():
     lista = setup_tests()
 
@@ -180,7 +180,7 @@ def test_is_present():
     assert lt.is_present(lista, 4, compare_from_tests) == -1
 
 
-@pytest.mark.skip(reason="No implementado aun")
+
 def test_delete_element():
     lista = setup_tests()
 
