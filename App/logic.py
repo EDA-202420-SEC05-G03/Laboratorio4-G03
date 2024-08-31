@@ -28,6 +28,8 @@ import csv
 import os
 # TODO Importar la libreria correspondiente para el manejo de listas sencillamente enlazadas
 
+from DataStructures.List import single_linked_list as lt
+
 data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/'
 
 """
@@ -46,10 +48,10 @@ def new_logic():
                'tags': None,
                'book_tags': None}
     
-    catalog['books'] = # TODO Implementar la inicialización de la lista de libros
+    catalog['books'] = lt.new_list()
     catalog['authors']= lt.new_list()
-    catalog['tags']=  #TODO Implementar la inicialización de la lista de tags
-    catalog['book_tags'] = # TODO Implementar la inicialización de la lista de asociación de libros y tags
+    catalog['tags']=  lt.new_list()
+    catalog['book_tags'] = lt.new_list()
     return catalog
 
 
@@ -106,6 +108,22 @@ def get_best_avg_rating(catalog):
     Retorna el libro con el mayor rating promedio (avg_rating) de los datos
     """
     # TODO Implementar la función para obtener el libro con el mayor avg_rating
+    
+    books = catalog['books'] 
+    n=books['size']
+    current=books['first']
+    previous=None
+    best_rating=0
+
+    while current['next'] is not None:
+        previous=current
+        current=current['next']
+        if compare_ratings(current['info'],previous['info']):
+            best_book=current['info']
+            
+    return best_book
+    
+        
 
 def get_books_by_author(catalog, author_name):
     """
@@ -256,5 +274,5 @@ def compare_book_ids(id, book):
 
 # funciones para comparar elementos dentro de algoritmos de ordenamientos
 
-def compare_ratings(book1, book2):
+ def compare_ratings(book1, book2):
     return (float(book1['average_rating']) > float(book2['average_rating']))
