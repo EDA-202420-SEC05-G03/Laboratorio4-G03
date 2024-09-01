@@ -143,14 +143,36 @@ def get_book_info_by_book_id(catalog, book_id):
     return None
 
 def get_first_last_books(catalog, top):
-    # TODO Implementar la función que retorne dos listas con los n primeros y ultimos libros cargados
+
+    first_elems = []
+    last_elems = []
+    my_list = catalog['books']
+    
+    for i in range(top):
+        f_elm = lt.get_element(my_list, my_list['size']-1-i)
+        l_elm = lt.get_element(my_list, i)
+        
+        first_elems.append(f_elm)
+        last_elems.append(l_elm)
+        
     return first_elems, last_elems
 
 def count_books_by_tag(catalog, tag):
     """
     Retorna el conteo de libros que tienen asociado el tag solicitado.
     """
-    # TODO Implementar la función de conteo de libros por tag
+    my_list = catalog['book_tags']
+    current_node = my_list['first']
+    book_tags = current_node['info']
+    
+    count = 0
+    for i in range(my_list['size']):
+        if book_tags['tag_id'] == tag:
+            count += 1
+        
+        current_node = current_node['next']    
+        
+    return count
 
 # Funciones para agregar informacion al catalogo
 
