@@ -28,7 +28,9 @@ import csv
 import os
 # TODO Importar la libreria correspondiente para el manejo de listas sencillamente enlazadas
 
-data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/'
+from DataStructures.List import single_linked_list as lt
+
+data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/GoodReads'
 
 """
 El controlador se encarga de mediar entre la vista y el modelo.
@@ -46,10 +48,10 @@ def new_logic():
                'tags': None,
                'book_tags': None}
     
-    catalog['books'] = # TODO Implementar la inicialización de la lista de libros
+    catalog['books'] = lt.new_list()
     catalog['authors']= lt.new_list()
-    catalog['tags']=  #TODO Implementar la inicialización de la lista de tags
-    catalog['book_tags'] = # TODO Implementar la inicialización de la lista de asociación de libros y tags
+    catalog['tags']=  lt.new_list()
+    catalog['book_tags'] = lt.new_list()
     return catalog
 
 
@@ -106,6 +108,21 @@ def get_best_avg_rating(catalog):
     Retorna el libro con el mayor rating promedio (avg_rating) de los datos
     """
     # TODO Implementar la función para obtener el libro con el mayor avg_rating
+    books = catalog['books'] 
+    current=books['first']
+    
+    if current is None:
+        return None
+
+    best_book=current['info']
+    
+    while current['next'] is not None:
+        current=current['next']
+        if compare_ratings(current['info'],best_book):
+            best_book=current['info']
+        current=current['next']
+            
+    return best_book
 
 def get_books_by_author(catalog, author_name):
     """
@@ -253,7 +270,7 @@ def compare_tag_names(name, tag):
 def compare_book_ids(id, book):
 # TODO Implementar la función de comparación por book id
 
-
+ return None
 # funciones para comparar elementos dentro de algoritmos de ordenamientos
 
 def compare_ratings(book1, book2):
