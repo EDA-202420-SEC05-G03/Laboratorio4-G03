@@ -195,7 +195,6 @@ def test_delete_element():
     assert lista["last"]["info"] == 2
 
 
-@pytest.mark.skip(reason="No implementado aun")
 def test_change_info():
     lista = setup_tests()
 
@@ -211,7 +210,6 @@ def test_change_info():
     assert lista["last"]["info"] == 4
 
 
-@pytest.mark.skip(reason="No implementado aun")
 def test_exchange():
     lista = setup_tests()
 
@@ -228,7 +226,6 @@ def test_exchange():
     assert lista["last"]["info"] == 3
 
 
-@pytest.mark.skip(reason="No implementado aun")
 def test_sub_list():
     lista = setup_tests()
 

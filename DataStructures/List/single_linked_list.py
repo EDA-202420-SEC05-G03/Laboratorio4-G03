@@ -173,4 +173,75 @@ def is_present(my_list, element, cmp_function):
 
     return -1   
    
-    
+def change_info(lst, pos, newinfo):
+    if lst['size'] == 0 or pos < 0 or pos >= lst['size']:
+        return lst
+
+    current = lst['first']
+    count = 0
+
+    while count < pos:
+        current = current['next']
+        count += 1
+
+    current['info'] = newinfo
+
+    return lst
+
+def exchange(lst, pos1, pos2):
+    if lst['size'] == 0 or pos1 < 0 or pos1 >= lst['size'] or pos2 < 0 or pos2 >= lst['size']:
+        return lst
+
+    if pos1 == pos2:
+        return lst
+
+    current1 = lst['first']
+    count1 = 0
+
+    while count1 < pos1:
+        current1 = current1['next']
+        count1 += 1
+
+    current2 = lst['first']
+    count2 = 0
+
+    while count2 < pos2:
+        current2 = current2['next']
+        count2 += 1
+
+    current1['info'], current2['info'] = current2['info'], current1['info']
+
+    return lst
+
+def sub_list(lst, pos, numelem):
+    if lst['size'] == 0 or pos < 0 or pos >= lst['size'] or numelem <= 0:
+        return None
+
+    sub_lst = {'first': None, 'size': 0}
+
+    current = lst['first']
+    count = 0
+
+    while count < pos:
+        current = current['next']
+        count += 1
+
+    for i in range(numelem):
+        if current is None:
+            break
+
+        new_node = {'info': current['info'], 'next': None}
+
+        if sub_lst['first'] is None:
+            sub_lst['first'] = new_node
+            sub_lst['last'] = new_node
+        else:
+            sub_lst['last']['next'] = new_node
+            sub_lst['last'] = new_node
+
+        sub_lst['size'] += 1
+        current = current['next']
+
+    return sub_lst
+
+

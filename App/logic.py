@@ -26,7 +26,6 @@
 
 import csv
 import os
-# TODO Importar la libreria correspondiente para el manejo de listas sencillamente enlazadas
 
 from DataStructures.List import single_linked_list as lt
 
@@ -107,7 +106,6 @@ def get_best_avg_rating(catalog):
     """
     Retorna el libro con el mayor rating promedio (avg_rating) de los datos
     """
-    # TODO Implementar la función para obtener el libro con el mayor avg_rating
     books = catalog['books'] 
     current=books['first']
     
