@@ -137,7 +137,7 @@ def get_book_info_by_book_id(catalog, book_id):
     Retorna toda la informacion que se tenga almacenada de un libro segun su titulo.
     """
     pos_book =  lt.is_present(catalog['books'], book_id, compare_book_ids)
-    if pos_book > 0:
+    if pos_book >= 0:
         book = lt.get_element(catalog['books'], pos_book)
         return book
     return None
@@ -161,36 +161,35 @@ def count_books_by_tag(catalog, tag):
     """
     Retorna el conteo de libros que tienen asociado el tag solicitado.
     """
-    my_list1 = catalog['tags']
-    current_tag_node = my_list1['first']
-    tags = current_tag_node['info']
-    
-    my_list2 = catalog['book_tags']
-    list2_size = lt.size(my_list2)
-    current_booktag_node = my_list2['first']
-    booktag = current_booktag_node['info']
-    
-    tag_names_with_id = []
-    
-    for i in range(list2_size):
-        lt.sub_list(my_list1, my_list2)
-        
-    """
-    my_list2 = catalog['book_tags']
-    current_tag_node = my_list1['first']
-    book_tags = current_tag_node['info']
-    
-    for j in range 
+    tag_list = catalog['tags']
+    current_tag_node = tag_list['first']
+    tag_info = current_tag_node['info']
     
     count = 0
-    for i in range(my_list['size']):
-        if book_tags['tag_id'] == tag:
-            count += 1
+    for i in range(lt.size(tag_list)):
         
-        current_tag_node = current_tag_node['next']    
-        #x
+        if tag.replace(' ', '').upper() == tag_info['name'].replace('-', '').upper():
+            
+            booktag_list = catalog['book_tags']
+            current_booktag_node = booktag_list['first']
+            booktag = current_booktag_node['info']
+            for j in range(lt.size(booktag_list)):
+                
+                if tag_info['tag_id'] == booktag['tag_id']:
+                    count = booktag['count']
+                    
+                    return count
+                  
+                if current_booktag_node['next'] != None:
+                    current_booktag_node = current_booktag_node['next']
+                    booktag = current_booktag_node['info']
+                
+        if current_tag_node['next'] != None:        
+            current_tag_node = current_tag_node['next']
+            tag_info = current_tag_node['info']
+        
     return count
-    """
+
 # Funciones para agregar informacion al catalogo
 
 def add_book(catalog, book):
