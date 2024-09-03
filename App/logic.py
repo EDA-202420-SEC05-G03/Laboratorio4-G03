@@ -149,8 +149,8 @@ def get_first_last_books(catalog, top):
     my_list = catalog['books']
     
     for i in range(top):
-        f_elm = lt.get_element(my_list, my_list['size']-1-i)
-        l_elm = lt.get_element(my_list, i)
+        l_elm = lt.get_element(my_list, my_list['size']-1-i)
+        f_elm = lt.get_element(my_list, i)
         
         first_elems.append(f_elm)
         last_elems.append(l_elm)
