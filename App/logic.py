@@ -108,18 +108,18 @@ def get_best_avg_rating(catalog):
     """
     books = catalog['books'] 
     current=books['first']
-    
+
     if current is None:
         return None
 
     best_book=current['info']
-    
-    while current['next'] is not None:
-        current=current['next']
+
+    while current is not None:
+
         if compare_ratings(current['info'],best_book):
             best_book=current['info']
         current=current['next']
-            
+
     return best_book
 
 def get_books_by_author(catalog, author_name):
@@ -127,7 +127,7 @@ def get_books_by_author(catalog, author_name):
     Retrona los libros de un autor
     """
     pos_author =pos_author = lt.is_present(catalog['authors'], author_name,compare_authors)
-    if pos_author > 0:
+    if pos_author >= 0:
         author = lt.get_element(catalog['authors'], pos_author)
         return author
     return None
@@ -161,19 +161,36 @@ def count_books_by_tag(catalog, tag):
     """
     Retorna el conteo de libros que tienen asociado el tag solicitado.
     """
-    my_list = catalog['book_tags']
-    current_node = my_list['first']
-    book_tags = current_node['info']
+    my_list1 = catalog['tags']
+    current_tag_node = my_list1['first']
+    tags = current_tag_node['info']
+    
+    my_list2 = catalog['book_tags']
+    list2_size = lt.size(my_list2)
+    current_booktag_node = my_list2['first']
+    booktag = current_booktag_node['info']
+    
+    tag_names_with_id = []
+    
+    for i in range(list2_size):
+        lt.sub_list(my_list1, my_list2)
+        
+    """
+    my_list2 = catalog['book_tags']
+    current_tag_node = my_list1['first']
+    book_tags = current_tag_node['info']
+    
+    for j in range 
     
     count = 0
     for i in range(my_list['size']):
         if book_tags['tag_id'] == tag:
             count += 1
         
-        current_node = current_node['next']    
-        
+        current_tag_node = current_tag_node['next']    
+        #x
     return count
-
+    """
 # Funciones para agregar informacion al catalogo
 
 def add_book(catalog, book):
@@ -288,9 +305,16 @@ def compare_tag_names(name, tag):
     return -1
 
 def compare_book_ids(id, book):
-# TODO Implementar la función de comparación por book id
+    
+    book_id = book["goodreads_book_id"]
 
- return None
+    if id == book_id:
+        return 0
+    elif id < book_id:
+        return -1
+    else:
+        return 1
+    
 # funciones para comparar elementos dentro de algoritmos de ordenamientos
 
 def compare_ratings(book1, book2):

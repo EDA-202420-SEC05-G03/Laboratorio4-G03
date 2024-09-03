@@ -26,7 +26,7 @@
 
 import sys
 import App.logic as logic
-from DataStructures import List as lt
+from DataStructures.List import single_linked_list as lt
 
 
 """
